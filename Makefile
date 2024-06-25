@@ -1,7 +1,9 @@
+warmdents_cflags:=-std=c11 -Wall -Wextra -pedantic -D_DEFAULT_SOURCE $(CFLAGS)
+
 all: warmdents
 
 warmdents: warmdents.c
-	clang -g -Wall -Wextra -pedantic warmdents.c -o warmdents
+	$(CC) $(warmdents_cflags) warmdents.c -o warmdents
 
 clean:
 	rm -f warmdents
