@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <linux/limits.h>
 
-#define WD_VERSION "0.1.0"
+#define WD_VERSION "0.1.1"
 
 struct wd_queue_item {
     char path[PATH_MAX];
@@ -23,7 +23,7 @@ struct wd_queue {
     mtx_t mtx;
 };
 
-static int *run_thread(void *param);
+static int run_thread(void *param);
 static void warm_dir(const char *path, struct wd_queue *q, size_t *count);
 static void queue_flush_to(struct wd_queue *from, struct wd_queue *to);
 static void queue_alloc(struct wd_queue *q, size_t cap);
@@ -111,7 +111,7 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-static int *run_thread(void *param) {
+static int run_thread(void *param) {
     struct wd_queue_item *item;
     struct wd_queue local = {0};
     int starved = 0;
@@ -160,7 +160,7 @@ static int *run_thread(void *param) {
     // Free local queue
     queue_free(&local);
 
-    return NULL;
+    return 0;
 }
 
 static void warm_dir(const char *path, struct wd_queue *q, size_t *count) {
