@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <linux/limits.h>
 
-#define WD_VERSION "0.1.1"
+#define WD_VERSION "0.1.2"
 
 struct wd_queue_item {
     char path[PATH_MAX];
